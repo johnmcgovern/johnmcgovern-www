@@ -1,0 +1,11 @@
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Assets are cached for a year. Cache busting is by URL: bump the ?v= query
+# on style.css/main.js references in the HTML when they change, and version
+# font/image filenames (e.g. -v22) if they're ever replaced.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

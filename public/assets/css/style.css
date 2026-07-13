@@ -1,0 +1,294 @@
+/* ==========================================================================
+   johnmcgovern.com — deep-space theme (shared family with j23networks.com)
+   ========================================================================== */
+
+/* ---------- self-hosted fonts ----------
+   Variable woff2 files (one file covers all weights), split into latin /
+   latin-ext subsets via unicode-range so browsers fetch only what they use.
+   Files are versioned in the filename (v20/v22) for long-lived caching. */
+
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/assets/fonts/space-grotesk-v22-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/assets/fonts/space-grotesk-v22-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/assets/fonts/inter-v20-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/assets/fonts/inter-v20-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  --bg: #05060f;
+  --bg-raise: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.09);
+  --text: #e8eaf6;
+  --muted: #9aa3c7;
+  --blue: #5b8cff;
+  --purple: #a06bff;
+  --red: #ff5468;
+  --grad: linear-gradient(92deg, var(--blue) 0%, var(--purple) 52%, var(--red) 100%);
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16.5px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ---------- background layers ---------- */
+
+#starfield {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+}
+
+.nebula {
+  position: fixed;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.32;
+  pointer-events: none;
+}
+.nebula-blue   { width: 560px; height: 560px; top: -180px; left: -140px; background: radial-gradient(circle, #2c55d8, transparent 65%); }
+.nebula-purple { width: 640px; height: 640px; top: 34%; right: -240px; background: radial-gradient(circle, #6b3fd4, transparent 65%); }
+.nebula-red    { width: 520px; height: 520px; bottom: -200px; left: 12%; background: radial-gradient(circle, #c22a45, transparent 65%); }
+
+/* ---------- layout ---------- */
+
+.page {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 20px 24px;
+}
+
+.hub {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+/* ---------- intro ---------- */
+
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0 0 0.35em;
+}
+
+.grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tagline {
+  color: var(--muted);
+  font-size: 1.02rem;
+  margin: 0 0 1.9em;
+}
+.tagline .sep { opacity: 0.5; padding: 0 0.2em; }
+.tagline .phrase { white-space: nowrap; }
+
+/* stack the tagline phrases when they can't share a line */
+@media (max-width: 560px) {
+  .tagline .sep { display: none; }
+  .tagline .phrase { display: block; }
+}
+
+/* ---------- link cards ---------- */
+
+.links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  list-style: none;
+  margin: 0 0 1.8em;
+  padding: 0;
+}
+
+.card {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  background: var(--bg-raise);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--text);
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.07);
+  outline: none;
+}
+
+.card svg {
+  width: 34px;
+  height: 34px;
+  color: var(--muted);
+  transition: color 0.18s ease;
+}
+.card:hover svg,
+.card:focus-visible svg { color: var(--text); }
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.card-desc {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* accent underline per card, revealed on hover */
+.card::after {
+  content: "";
+  width: 34px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent, var(--grad));
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+.card:hover::after,
+.card:focus-visible::after { opacity: 1; }
+
+.card-linkedin { --accent: var(--blue); }
+.card-github   { --accent: var(--purple); }
+.card-j23      { --accent: var(--grad); }
+.card-email    { --accent: var(--red); }
+
+/* ---------- footer ---------- */
+
+.footer {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+.footer a { color: inherit; }
+
+/* ---------- reveal-on-load ---------- */
+
+.reveal-load {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: reveal 0.7s ease forwards;
+}
+.reveal-load:nth-child(2) { animation-delay: 0.08s; }
+.reveal-load:nth-child(3) { animation-delay: 0.16s; }
+.reveal-load:nth-child(4) { animation-delay: 0.24s; }
+
+@keyframes reveal {
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-load { animation: none; opacity: 1; transform: none; }
+  .card, .card svg, .card::after { transition: none; }
+}
+
+/* short viewports: compact everything so the page fits without scrolling */
+@media (max-height: 780px) and (min-width: 421px) {
+  .page { padding: 24px 20px 18px; }
+  .hub { max-width: 440px; }
+  .name { font-size: clamp(1.8rem, 5vw, 2.2rem); }
+  .tagline { margin-bottom: 1.4em; font-size: 0.95rem; }
+  .links { margin-bottom: 1.4em; }
+  .card { padding: 16px; gap: 8px; }
+  .card svg { width: 28px; height: 28px; }
+}
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 420px) {
+  .links { gap: 12px; }
+  .card { padding: 14px; gap: 8px; }
+  .card svg { width: 28px; height: 28px; }
+  .card-title { font-size: 0.98rem; }
+  .card-desc { font-size: 0.78rem; }
+}
+
+/* ---------- 404 ---------- */
+
+.error-code {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 18vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0 0 0.15em;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 1.4em;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-raise);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.btn:hover { border-color: rgba(255, 255, 255, 0.22); background: rgba(255, 255, 255, 0.07); }
