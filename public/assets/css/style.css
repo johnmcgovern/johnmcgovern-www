@@ -132,11 +132,13 @@ body {
 }
 .tagline .sep { opacity: 0.5; padding: 0 0.2em; }
 .tagline .phrase { white-space: nowrap; }
+.tagline .phrase-lead { display: block; }
 
-/* stack the tagline phrases when they can't share a line */
+/* stack the tagline phrases when they can't share a line; let long
+   phrases wrap within themselves instead of clipping */
 @media (max-width: 560px) {
   .tagline .sep { display: none; }
-  .tagline .phrase { display: block; }
+  .tagline .phrase { display: block; white-space: normal; }
 }
 
 /* ---------- link cards ---------- */
