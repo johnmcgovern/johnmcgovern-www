@@ -128,17 +128,15 @@ body {
 .tagline {
   color: var(--muted);
   font-size: 1.02rem;
+  line-height: 1.55;
   margin: 0 0 1.9em;
 }
-.tagline .sep { opacity: 0.5; padding: 0 0.2em; }
-.tagline .phrase { white-space: nowrap; }
-.tagline .phrase-lead { display: block; }
+.tagline .phrase { display: block; }
 
-/* stack the tagline phrases when they can't share a line; let long
-   phrases wrap within themselves instead of clipping */
-@media (max-width: 560px) {
-  .tagline .sep { display: none; }
-  .tagline .phrase { display: block; white-space: normal; }
+/* step the size down on narrow screens so the longest phrase
+   ("Cybersecurity & Networking @ SentinelOne") stays on one line */
+@media (max-width: 420px) {
+  .tagline { font-size: 0.94rem; }
 }
 
 /* ---------- link cards ---------- */
