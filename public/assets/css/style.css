@@ -212,9 +212,11 @@ body {
 .card:hover::after,
 .card:focus-visible::after { opacity: 1; }
 
+.card-s1       { --accent: var(--purple); }
 .card-linkedin { --accent: var(--blue); }
-.card-github   { --accent: var(--purple); }
 .card-j23      { --accent: var(--grad); }
+.card-net101   { --accent: var(--red); }
+.card-github   { --accent: var(--purple); }
 .card-email    { --accent: var(--red); }
 
 /* ---------- footer ---------- */
