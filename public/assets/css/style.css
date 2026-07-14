@@ -133,12 +133,6 @@ body {
 }
 .tagline .phrase { display: block; }
 
-/* step the size down on narrow screens so the longest phrase
-   ("Cybersecurity & Networking @ SentinelOne") stays on one line */
-@media (max-width: 420px) {
-  .tagline { font-size: 0.94rem; }
-}
-
 /* ---------- link cards ---------- */
 
 .links {
