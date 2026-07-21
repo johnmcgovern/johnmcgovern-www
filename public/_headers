@@ -3,6 +3,11 @@
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  # HSTS is intentionally www-only: this _headers file only reaches the www
+  # host (the apex 301-redirects at the Cloudflare edge, before Pages). No
+  # includeSubDomains (would pin every *.johnmcgovern.com) and no preload
+  # (requires includeSubDomains + whole-domain commitment).
+  Strict-Transport-Security: max-age=31536000
 
 # Assets are cached for a year. Cache busting is by URL: bump the ?v= query
 # on style.css/main.js references in the HTML when they change, and version
