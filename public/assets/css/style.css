@@ -131,7 +131,15 @@ body {
   line-height: 1.55;
   margin: 0 0 1.9em;
 }
-.tagline .phrase { display: block; }
+.tagline .phrase { white-space: nowrap; }
+.tagline .sep { opacity: 0.5; padding: 0 0.2em; }
+/* the long experience phrase gets its own line; no trailing separator */
+.tagline .phrase-tail { display: block; }
+
+/* narrow screens: let the long phrase wrap within itself instead of clipping */
+@media (max-width: 560px) {
+  .tagline .phrase { white-space: normal; }
+}
 
 /* ---------- link cards ---------- */
 
@@ -142,6 +150,12 @@ body {
   list-style: none;
   margin: 0 0 1.8em;
   padding: 0;
+}
+
+/* wider viewports: 3x2 grid (mobile stays 2x3) */
+@media (min-width: 640px) {
+  .hub { max-width: 720px; }
+  .links { grid-template-columns: repeat(3, 1fr); }
 }
 
 .card {
@@ -242,7 +256,7 @@ body {
 /* short viewports: compact everything so the page fits without scrolling */
 @media (max-height: 780px) and (min-width: 421px) {
   .page { padding: 24px 20px 18px; }
-  .hub { max-width: 440px; }
+  .hub { max-width: 620px; }
   .name { font-size: clamp(1.8rem, 5vw, 2.2rem); }
   .tagline { margin-bottom: 1.4em; font-size: 0.95rem; }
   .links { margin-bottom: 1.4em; }
