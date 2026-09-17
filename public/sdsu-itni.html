@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>John McGovern - SDSU IT Network &amp; Infrastructure</title>
+  <meta name="description" content="Application materials from John McGovern for Senior Network Engineer/Architect (Network Communications Analyst IV), Job No. 561415, San Diego State University.">
+  <!-- Unlisted page: not in the sitemap, not linked from the site, and deliberately
+       NOT listed in robots.txt (that file is public and would advertise the path).
+       The same directives are sent as an X-Robots-Tag header via _headers. -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon-sdsu.svg">
+  <meta name="theme-color" content="#a6192e">
+
+  <!-- Google tag (gtag.js) — same deferred-load pattern as index.html -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-E0V6D1GJT0');
+    window.addEventListener('load', function () {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-E0V6D1GJT0';
+      document.head.appendChild(s);
+    });
+  </script>
+
+  <link rel="preload" href="/assets/fonts/montserrat-v31-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    /* ==================================================================
+       SDSU visual identity (brand one-sheet, June 2023), standalone theme.
+       Headline: Tiempos → approved alternative Georgia/Cambria (system).
+       Body:     Proxima Nova → approved alternative Montserrat (self-hosted).
+       Colors:   Bright Red #D41736 · Dark Red #A6192E · Bright Teal #00A39D
+                 Dark Teal #008080 · Charcoal #2D2828 · Light Gray #CDCDC8
+       ================================================================== */
+    @font-face {
+      font-family: "Montserrat"; font-style: normal; font-weight: 400 700; font-display: swap;
+      src: url("/assets/fonts/montserrat-v31-latin.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: "Montserrat"; font-style: normal; font-weight: 400 700; font-display: swap;
+      src: url("/assets/fonts/montserrat-v31-latin-ext.woff2") format("woff2");
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    :root {
+      --red: #d41736;
+      --red-dark: #a6192e;
+      --teal: #00a39d;
+      --teal-dark: #008080;
+      --charcoal: #2d2828;
+      --gray: #cdcdc8;
+      --gray-soft: #f4f4f2;
+      --rule: #e3e3df;
+      --text: var(--charcoal);
+      --muted: #5f5a5a;
+      --font-head: Georgia, Cambria, "Times New Roman", serif;
+      --font-body: "Montserrat", "Avenir Next", system-ui, -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { background: #fff; }
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      border-top: 8px solid var(--red-dark);
+      overflow-x: hidden;
+    }
+
+    /* ---------- layout ---------- */
+    .page { display: flex; justify-content: center; padding: 0 20px 28px; }
+    .doc { width: 100%; max-width: 46rem; min-width: 0; text-align: left; }
+
+    /* ---------- masthead (full-bleed soft band behind a constrained column) ---------- */
+    .doc > header {
+      padding: 2.6rem 0 2.3rem;
+      background: var(--gray-soft);
+      box-shadow: 0 0 0 100vmax var(--gray-soft);
+      clip-path: inset(0 -100vmax);
+    }
+    .eyebrow {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px;
+      margin: 0 0 1.2rem;
+      color: var(--red-dark); font-weight: 700; font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .eyebrow .sep { color: var(--gray); }
+    .name {
+      font-family: var(--font-head); font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3rem); line-height: 1.05; letter-spacing: -0.01em;
+      margin: 0;
+    }
+    .grad-text { color: var(--red-dark); }
+    /* a single brand-red bar as the one "shape" accent */
+    .name::after { content: ""; display: block; width: 56px; height: 4px; background: var(--red); margin-top: 0.75rem; }
+    .role { font-weight: 600; font-size: 1.05rem; line-height: 1.45; margin: 1.1rem 0 0.25rem; }
+    /* Montserrat is wide: the job line always gets its own row here */
+    .role .sep { display: none; }
+    .role .jobno { display: block; color: var(--muted); font-weight: 500; font-size: 0.95rem; margin-top: 0.1rem; }
+    .contact {
+      display: flex; flex-wrap: wrap; gap: 4px 0;
+      margin: 0.45rem 0 0; padding: 0; list-style: none;
+      font-size: 0.9rem; font-weight: 500;
+    }
+    .contact li:not(:last-child)::after { content: "\00b7"; color: var(--gray); padding: 0 0.55em; }
+    .contact a { color: var(--teal-dark); text-decoration: none; border-bottom: 1px solid rgba(0, 128, 128, 0.3); }
+    .contact a:hover { color: var(--red-dark); border-color: currentColor; }
+
+    /* ---------- tabs (underline style) ---------- */
+    .tabs { display: flex; gap: 2rem; margin: 0 0 2rem; border-bottom: 2px solid var(--rule); }
+    .tab {
+      appearance: none; background: none; border: 0; cursor: pointer;
+      border-bottom: 3px solid transparent; margin-bottom: -2px;
+      padding: 1.15rem 2px 0.8rem;
+      font-family: var(--font-body); font-weight: 700; font-size: 0.86rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+    .tab:hover { color: var(--charcoal); }
+    .tab[aria-selected="true"] { color: var(--red-dark); border-color: var(--red); }
+    .tab:focus-visible { outline: 2px solid var(--teal-dark); outline-offset: 3px; border-radius: 2px; }
+
+    /* ---------- document body ---------- */
+    .panel { animation: fade 0.35s ease both; }
+    .panel[hidden] { display: none; }
+    .panel h2 {
+      font-family: var(--font-head); font-weight: 400; font-size: 1.45rem; letter-spacing: -0.005em;
+      color: var(--red-dark);
+      margin: 2.4rem 0 0.8rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule);
+    }
+    .panel h2:first-child { margin-top: 0; }
+    .panel p, .panel li { font-size: 0.97rem; }
+    .panel p { margin: 0 0 1em; }
+    .panel a { color: var(--teal-dark); text-decoration: none; border-bottom: 1px solid rgba(0, 128, 128, 0.3); }
+    .panel a:hover { color: var(--red-dark); border-color: currentColor; }
+    .panel ul { margin: 0 0 1em; padding-left: 1.15em; }
+    .panel li { margin: 0 0 0.45em; }
+    .panel li::marker { color: var(--red); }
+    .panel strong { font-weight: 700; }
+
+    /* cover letter */
+    .letter-meta { color: var(--muted); }
+    .letter-meta p { margin: 0 0 0.9em; line-height: 1.5; }
+    .letter-re { font-weight: 700; color: var(--text); }
+    .letter-sig { margin-top: 1.6em; }
+    .letter-sig .sig-name { font-family: var(--font-head); font-size: 1.3rem; margin: 0.3em 0 0; }
+
+    /* resume */
+    .summary { font-size: 1.01rem; }
+    .skills { display: grid; grid-template-columns: minmax(9.5rem, max-content) 1fr; gap: 0.5rem 1.25rem; margin: 0 0 1em; }
+    .skills dt { font-weight: 700; }
+    .skills dd { margin: 0; color: var(--muted); }
+    .work li a { white-space: nowrap; }
+
+    .job { margin: 0 0 1.6rem; }
+    .job-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 1rem; }
+    .job-org { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.005em; margin: 0; }
+    .job-role { margin: 0.1rem 0 0.55em; color: var(--muted); font-size: 0.92rem; font-weight: 500; }
+    .job-role .title { color: var(--text); font-weight: 600; }
+    .job-role .dates { white-space: nowrap; }
+    .job-role .sub { display: block; font-size: 0.86rem; margin-top: 0.15em; }
+    .job p.lead { margin-bottom: 0.6em; }
+    .job ul { margin-bottom: 0; }
+
+    .earlier .job { margin-bottom: 1.1rem; }
+    .earlier .job-role { margin-bottom: 0.3em; }
+    .earlier p { margin: 0; color: var(--muted); font-size: 0.94rem; }
+
+    .edu .job-role { margin-bottom: 0.25em; }
+    .edu p { margin: 0 0 0.9em; color: var(--muted); font-size: 0.94rem; }
+    .certs strong { color: var(--text); }
+
+    .doc .footer {
+      margin-top: 3.5rem; padding-top: 1.4rem; border-top: 1px solid var(--rule);
+      text-align: center; color: var(--muted); font-size: 0.82rem;
+    }
+    .doc .footer a { color: var(--teal-dark); text-decoration: none; }
+    .doc .footer a:hover { color: var(--red-dark); }
+    .doc .footer .sep { color: var(--gray); padding: 0 0.3em; }
+    .print-only { display: none; }
+
+    @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .panel { animation: none; } .tab { transition: none; } }
+
+    @media (max-width: 560px) {
+      .doc > header { padding: 2rem 0 1.8rem; }
+      .eyebrow .sep { display: none; }
+      .tabs { gap: 1.4rem; }
+      .tab { padding: 1rem 2px 0.7rem; font-size: 0.8rem; }
+      .skills { grid-template-columns: 1fr; gap: 0.15rem 0; }
+      .skills dd { margin-bottom: 0.7rem; }
+      .job-role .dates { white-space: normal; }
+    }
+
+    /* ---------- print: both documents, letter first ---------- */
+    @media print {
+      @page { margin: 0.6in; }
+      html, body { background: #fff !important; font-size: 10pt; line-height: 1.5; border-top: 0; }
+      .tabs, .doc .footer { display: none !important; }
+      .page { padding: 0; display: block; }
+      .doc { max-width: none; }
+      .doc > header { padding: 0 0 0.6rem; background: none; box-shadow: none; clip-path: none; border-bottom: 1px solid var(--rule); }
+      .name { font-size: 2rem; }
+      .contact { font-size: 0.82rem; }
+      .contact a, .panel a { color: inherit; border: 0; }
+      .panel { display: block !important; animation: none; orphans: 3; widows: 3; }
+      .panel p { line-height: 1.45; }
+      .letter-meta p { margin-bottom: 0.7em; }
+      .panel h2 { break-after: avoid; }
+      .print-only { display: block; font-family: var(--font-head); font-size: 1.3rem; margin: 1.1rem 0 0.8rem; }
+      .print-only .print-sub { color: var(--muted); }
+      #panel-resume { break-before: page; }
+      .job-org, .job-role { break-after: avoid; }
+      .letter-sig, .job-role, .panel li, .earlier .job, .edu p { break-inside: avoid; }
+      .edu .certs { break-before: avoid; }
+      /* Montserrat sets wide; tighten vertical rhythm on paper so the resume fits 3 pages */
+      .panel h2 { font-size: 1.25rem; margin: 1.5rem 0 0.55rem; padding-bottom: 0.3rem; }
+      .job { margin-bottom: 1rem; }
+      .panel li { margin-bottom: 0.3em; }
+      .earlier .job { margin-bottom: 0.8rem; }
+      .edu p { margin-bottom: 0.6em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <main class="doc">
+      <header>
+        <p class="eyebrow">San Diego State University <span class="sep">&middot;</span> IT Network &amp; Infrastructure</p>
+        <h1 class="name">John <span class="grad-text">McGovern</span></h1>
+        <p class="role">Senior Network Engineer/Architect <span class="sep">&middot;</span> <span class="jobno">Network Communications Analyst IV &middot; Job No. 561415</span></p>
+        <ul class="contact">
+          <li><a href="mailto:johnmcg7@gmail.com">johnmcg7@gmail.com</a></li>
+          <li><a href="https://www.linkedin.com/in/johnmcgov" target="_blank" rel="noopener">linkedin.com/in/johnmcgov</a></li>
+          <li><a href="https://github.com/johnmcgovern" target="_blank" rel="noopener">github.com/johnmcgovern</a></li>
+        </ul>
+      </header>
+
+      <div class="tabs" role="tablist" aria-label="Application documents">
+        <button class="tab" role="tab" id="tab-cover-letter" aria-controls="panel-cover-letter" aria-selected="true">Cover Letter</button>
+        <button class="tab" role="tab" id="tab-resume" aria-controls="panel-resume" aria-selected="false" tabindex="-1">Resume</button>
+      </div>
+
+      <!-- ======================= COVER LETTER ======================= -->
+      <section class="panel" id="panel-cover-letter" data-hash="cover-letter" role="tabpanel" aria-labelledby="tab-cover-letter">
+        <p class="print-only">Cover Letter</p>
+        <div class="letter-meta">
+          <p>August 28, 2026</p>
+          <p>Hiring Committee<br>
+          IT Network &amp; Infrastructure, San Diego State University<br>
+          5500 Campanile Drive<br>
+          San Diego, CA 92182</p>
+          <p class="letter-re">RE: Senior Network Engineer/Architect (Network Communications Analyst IV), Job No. 561415</p>
+        </div>
+
+        <p>Dear Hiring Committee,</p>
+
+        <p>From 2013 to 2017, I served as a Network Analyst at San Diego State University, promoted during that time to the Expert classification and appointed group lead for network architecture and strategy. The environment this posting describes is one I know firsthand. I helped design and operate the expansive campus network, on a stack built around Alcatel-Lucent, Cisco, HPE Aruba, and Palo Alto. My four years at SDSU were the most meaningful of my twenty-three-year career, and I am applying because I want to bring everything I have learned since back to the place where that learning was most significant.</p>
+
+        <p>I left SDSU in 2017 for ServiceNow, where I helped operate a production network spanning more than twenty data centers and tens of thousands of devices, working in BGP and OSPF at global scale. Since 2018, I have been a cybersecurity architect at Splunk and now SentinelOne, designing and validating security, telemetry, and observability architectures for Fortune 100 environments. Along the way, I completed a master's degree in Cybersecurity Operations &amp; Leadership at the University of San Diego, kept my CCNP Enterprise certification current, and wrote Python and Ansible automation that Splunk adopted as an open-source standard. This posting asks for observability, automation, cloud connectivity, and security depth alongside core routing and switching. That combination has been the focus of the last nine years of my career, and I would come back a far stronger engineer than I left.</p>
+
+        <p>What I remember most fondly about SDSU, though, is not the hardware. It is the student technicians I mentored, several of whom have built strong careers of their own, and the documentation portal and training video series my team created, which was adopted across the CSU system. OneIT's values of service, collaboration, and innovation describe how I have tried to work everywhere I have been, but a university is where those values connect directly to teaching, research, and student success. That is the mission I want the next decade of my career to serve.</p>
+
+        <p>Returning to SDSU would not be a stepping stone for me. It would be a homecoming with compound interest. I would welcome the chance to discuss the university's network modernization roadmap and how I could contribute from day one. Thank you for your consideration.</p>
+
+        <div class="letter-sig">
+          <p>Sincerely,</p>
+          <p class="sig-name">John C. McGovern</p>
+        </div>
+      </section>
+
+      <!-- ======================= RESUME ======================= -->
+      <section class="panel" id="panel-resume" data-hash="resume" role="tabpanel" aria-labelledby="tab-resume">
+        <p class="print-only">Resume <span class="print-sub">&middot; John McGovern</span></p>
+        <h2>Summary</h2>
+        <p class="summary">Twenty-three years in network and security engineering. Thirteen of them hands-on in production - global data center networks at ServiceNow, a 68,000-device campus network at San Diego State - followed by seven designing, building, and validating SIEM, XDR, SOAR, and security automation architectures alongside Fortune 100 security teams at Splunk and SentinelOne. Writes production Python and Ansible; open-source contributor; CTF scenario author and coach. MS in Cybersecurity Operations &amp; Leadership, Splunk Enterprise Certified Architect, GIAC GMON &amp; GCSA, CCNP Enterprise.</p>
+
+        <h2>Technical Skills</h2>
+        <dl class="skills">
+          <dt>Security Operations</dt>
+          <dd>SIEM (Splunk Enterprise Security), XDR/EDR (SentinelOne Singularity), SOAR (Splunk SOAR/Phantom), UEBA, detection engineering, threat hunting, threat intelligence, incident response, MITRE ATT&amp;CK</dd>
+          <dt>Automation &amp; Code</dt>
+          <dd>Python (pandas, data pipelines), Ansible, Bash, Git, regular expressions, REST APIs</dd>
+          <dt>Platforms &amp; Cloud</dt>
+          <dd>Linux, Windows Server, AWS (S3, IAM), Azure, GCP, Kubernetes, Docker, VMware</dd>
+          <dt>Network &amp; Infrastructure</dt>
+          <dd>Cisco, Palo Alto, Fortinet, Aruba, Meraki, BGP/OSPF, IPsec/site-to-site VPN, segmentation, zero trust, syslog architecture (SC4S)</dd>
+          <dt>Governance</dt>
+          <dd>NIST CSF &amp; RMF, cybersecurity risk management, security policy, applied cryptography</dd>
+        </dl>
+
+        <h2>Selected Technical Work</h2>
+        <ul class="work">
+          <li><strong>pontoon</strong> - durable bulk log replay into Splunk HEC; public sibling of the Python/Ansible replay tooling adopted as an internal standard at Splunk. <a href="https://github.com/johnmcgovern/pontoon" target="_blank" rel="noopener">github.com/johnmcgovern/pontoon</a></li>
+          <li><strong>ansible-splunk-base</strong> - Ansible role for automated Splunk deployment; 18 stars / 19 forks, community-adopted. <a href="https://github.com/johnmcgovern/ansible-splunk-base" target="_blank" rel="noopener">github.com/johnmcgovern/ansible-splunk-base</a></li>
+          <li><strong>attack-replay &middot; splunk-json-cleaner &middot; splunk-downloader</strong> - detection-data replay toolkit for testing detections against realistic attack telemetry. <strong>ansible-phantom-base</strong> - automated Splunk SOAR deployment.</li>
+          <li><strong>Splunk Connect for Syslog (SC4S)</strong> - open-source contributor.</li>
+          <li><strong>Networking 101</strong> - public video series. <a href="https://www.youtube.com/playlist?list=PLMTCTd3b8IdLkjpCLrxbFKTY6CTlaMPco" target="_blank" rel="noopener">YouTube Networking 101</a></li>
+          <li><strong>Boss of the SOC / Boss of the NOC</strong> - authored the Kubernetes/DevOps CTF scenario; led and coached BOTS events.</li>
+        </ul>
+
+        <h2>Professional Experience</h2>
+
+        <article class="job">
+          <div class="job-head"><h3 class="job-org">SentinelOne</h3></div>
+          <p class="job-role"><span class="title">Staff Solutions Engineer, Strategic West</span> &middot; <span class="dates">Sep 2025 – Present</span></p>
+          <p class="lead">Technical lead for SentinelOne's largest Fortune 100 accounts across the Singularity platform - XDR/EDR, cloud workload security, identity, and AI-driven security operations. Design, deploy, and validate security architectures from discovery through deployment-scale evaluation, mapping platform coverage to attacker TTPs and MITRE ATT&amp;CK.</p>
+          <ul>
+            <li>Built "SE Advantage," an AI-powered second brain for solutions engineers - a Notion + n8n automation pipeline that captures account activity automatically, replacing manual record-keeping and returning SE time to technical work. Won SentinelOne's SE Innovation Award ("Most Innovative").</li>
+            <li>Technical lead on complex evaluations and expansion efforts across SentinelOne's largest accounts, including a first-time platform land at a Fortune 50 within six months.</li>
+          </ul>
+        </article>
+
+        <article class="job">
+          <div class="job-head"><h3 class="job-org">J23 Networks</h3></div>
+          <p class="job-role"><span class="title">Principal</span> &middot; <span class="dates">2025 – Present</span></p>
+          <p class="lead">Limited independent practice serving select San Diego–area nonprofits: network design, cybersecurity consulting and deployments, systems engineering, and training.</p>
+        </article>
+
+        <article class="job">
+          <div class="job-head"><h3 class="job-org">Splunk</h3></div>
+          <p class="job-role">
+            <span class="title">Staff Solutions Architect – Cybersecurity</span> &middot; <span class="dates">Feb 2024 – Sep 2025</span>
+            <span class="sub"><span class="title">Staff / Senior / Consulting Sales Engineer – Cybersecurity</span> &middot; <span class="dates">Feb 2020 – Jan 2024</span></span>
+            <span class="sub"><span class="title">Sales Engineer, Strategic West</span> &middot; <span class="dates">Jul 2018 – Jan 2020</span></span>
+          </p>
+          <p class="lead">Cybersecurity specialist embedded with Splunk's largest strategic accounts - designing, deploying, and validating SIEM, SOAR, and security automation architectures in Fortune 100 evaluation and production environments.</p>
+          <ul>
+            <li>Wrote Python and Ansible data-generation and replay tooling from scratch for custom evaluation environments; adopted as the internal standard for high-volume data replay across the solutions organization.</li>
+            <li>Built a Splunk-to-Python/pandas/AWS S3 export pipeline deployed at a top global priority account.</li>
+            <li>Open-source contributor to Splunk Connect for Syslog (SC4S), the reference syslog ingestion architecture.</li>
+            <li>Authored the Boss of the NOC Kubernetes/DevOps CTF scenario; led and coached Boss of the SOC events - building realistic attack telemetry and the detections that catch it.</li>
+            <li>Architected and validated end-to-end security data strategies for Fortune 100 environments: log source onboarding, normalization, detection content, and analyst workflow.</li>
+            <li>Delivered specialized cybersecurity workshops, technical trainings, and architecture roadmaps; reviewed national conference presenter.</li>
+            <li>Six-time award recipient: FY22 Solutions Architect MVP, FY24 Q1 "Eddie Aikau" Outstanding Individual Contribution, FY21 "Phishy" cybersecurity IC award, FY19 Rising Star.</li>
+          </ul>
+        </article>
+
+        <article class="job">
+          <div class="job-head"><h3 class="job-org">ServiceNow</h3></div>
+          <p class="job-role"><span class="title">Senior Network Engineer, Cloud Network Operations</span> &middot; <span class="dates">Aug 2017 – Jul 2018</span></p>
+          <ul>
+            <li>Operated and maintained ServiceNow's production network across 20+ global data centers - tens of thousands of switches, routers, firewalls, and servers supporting a leading SaaS platform.</li>
+            <li>Engineered custom network integrations for domestic and international enterprise customers: firewall policy, site-to-site VPN, ISP transit and peering, and BGP/OSPF routing.</li>
+          </ul>
+        </article>
+
+        <article class="job">
+          <div class="job-head"><h3 class="job-org">San Diego State University</h3></div>
+          <p class="job-role">
+            <span class="title">Network Analyst, Expert</span> &middot; <span class="dates">Aug 2015 – Aug 2017</span>
+            <span class="sub"><span class="title">Network Analyst, Career</span> &middot; <span class="dates">Oct 2013 – Jul 2015</span></span>
+          </p>
+          <ul>
+            <li>Promoted to SDSU's highest technical classification; group lead owning network architecture and strategy for the university.</li>
+            <li>Designed and operated a 68,000-daily-device campus and data center network - 2,100 switches, 3,400 access points - across Cisco, Alcatel-Lucent, Palo Alto, Aruba, A10, Gigamon, and BlueCat.</li>
+            <li>Built a technical documentation portal and training video series adopted across the California State University system; advisor to student network technicians.</li>
+          </ul>
+        </article>
+
+        <h2>Earlier Experience</h2>
+        <div class="earlier">
+          <article class="job">
+            <p class="job-role"><span class="title"><strong>Emotient</strong> - Systems Administrator</span> &middot; <span class="dates">Apr 2013 – Oct 2013</span></p>
+            <p>Fifteenth employee and first IT hire at a high-growth startup (acquired by Apple). Owned all network, security, and business systems - web, CRM, productivity suite, and endpoint.</p>
+          </article>
+          <article class="job">
+            <p class="job-role"><span class="title"><strong>Point Loma Nazarene University</strong> - Network Engineer</span> &middot; <span class="dates">Apr 2012 – Apr 2013</span></p>
+            <p>Invited back to implement next-generation university infrastructure: site-to-site mesh WAN redesign, client VPN overhaul, and Palo Alto firewall deployment. Led a web platform refresh that avoided $80K in proposed consulting fees and improved content publishing times &gt;40x.</p>
+          </article>
+          <article class="job">
+            <p class="job-role"><span class="title"><strong>Shadow Mountain Ministries &amp; San Diego Christian College</strong> - Network Administrator</span> &middot; <span class="dates">Mar 2010 – Apr 2012</span></p>
+            <p>Technical lead on a comprehensive infrastructure refresh: campus network, Meraki wireless, Hyper-V virtualization, Mitel VoIP, and Google Apps for EDU.</p>
+          </article>
+          <article class="job">
+            <p class="job-role"><span class="title"><strong>Point Loma Nazarene University</strong> - Network Engineer</span> &middot; <span class="dates">Mar 2005 – Mar 2010</span></p>
+            <p>Led broad infrastructure modernization: Cisco wired and data center switching, VPN, VoIP, Aruba wireless, Fortinet firewalls, VMware virtualization, and Linux/Windows server systems.</p>
+          </article>
+        </div>
+
+        <h2>Education &amp; Certifications</h2>
+        <div class="edu">
+          <p class="job-role"><span class="title"><strong>University of San Diego</strong> - Master of Science, Cybersecurity Operations &amp; Leadership</span> &middot; <span class="dates">2020 – 2022</span></p>
+          <p>Applied Cryptography &middot; Cybersecurity Risk Management &middot; Cybersecurity Operational Policy &middot; Cyber Threat Intelligence &middot; Incident Response &amp; Forensics</p>
+          <p class="job-role"><span class="title"><strong>Point Loma Nazarene University</strong> - Bachelor of Science, Information Systems</span> &middot; <span class="dates">2003 – 2006</span></p>
+          <p class="certs"><strong>Certifications</strong> - Splunk Enterprise Certified Architect &middot; SANS GIAC GMON (Continuous Monitoring) &middot; SANS GIAC GCSA (Cloud Security Automation) &middot; Cisco Certified Network Professional (CCNP) Enterprise</p>
+          <p class="certs"><strong>Former</strong> - Juniper JNCIA &middot; ServiceNow Certified System Administrator &middot; Palo Alto ACE &middot; SANS GSEC</p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>&copy; 2026 John McGovern <span class="sep">&middot;</span> <a href="/">johnmcgovern.com</a> <span class="sep">&middot;</span> <a href="/privacy">Privacy Policy</a> <span class="sep">&middot;</span> <a href="#" id="print-link">Print / Save as PDF</a></p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Tabs: hash-linkable (#cover-letter / #resume), arrow-key navigable.
+    // Without JS both panels simply render in order; print always shows both.
+    (function () {
+      "use strict";
+      var tabs = [].slice.call(document.querySelectorAll('[role="tab"]'));
+      var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute("aria-controls")); });
+      function indexOfHash() {
+        var h = location.hash.slice(1);
+        for (var i = 0; i < panels.length; i++) if (panels[i].getAttribute("data-hash") === h) return i;
+        return -1;
+      }
+      function select(i, updateHash) {
+        tabs.forEach(function (t, j) {
+          var on = j === i;
+          t.setAttribute("aria-selected", on ? "true" : "false");
+          t.tabIndex = on ? 0 : -1;
+          panels[j].hidden = !on;
+        });
+        if (updateHash) history.replaceState(null, "", "#" + panels[i].getAttribute("data-hash"));
+      }
+      tabs.forEach(function (t, i) {
+        t.addEventListener("click", function () { select(i, true); });
+        t.addEventListener("keydown", function (e) {
+          var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+          if (!d) return;
+          var n = (i + d + tabs.length) % tabs.length;
+          tabs[n].focus();
+          select(n, true);
+          e.preventDefault();
+        });
+      });
+      // Panel ids are prefixed (panel-*) and matched via data-hash, so a deep link
+      // like #resume selects the tab without anchor-scrolling past the header.
+      select(Math.max(0, indexOfHash()), false);
+      window.addEventListener("hashchange", function () { var i = indexOfHash(); if (i >= 0) select(i, false); });
+
+      var p = document.getElementById("print-link");
+      if (p) p.addEventListener("click", function (e) { e.preventDefault(); window.print(); });
+    })();
+  </script>
+</body>
+</html>

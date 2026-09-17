@@ -9,6 +9,17 @@
   # (requires includeSubDomains + whole-domain commitment).
   Strict-Transport-Security: max-age=31536000
 
+# Unlisted application microsite: keep it out of search engines at the HTTP
+# layer too (the page also carries a matching robots meta tag). Deliberately NOT
+# listed in robots.txt, since that file is public and would advertise the path.
+# Both spellings are covered because Pages answers /sdsu-itni.html with a
+# redirect to /sdsu-itni. noai/noimageai are non-standard hints some AI
+# crawlers honor; standard parsers ignore unknown tokens.
+/sdsu-itni
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex, noai, noimageai
+/sdsu-itni.html
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex, noai, noimageai
+
 # Assets are cached for a year. Cache busting is by URL: bump the ?v= query
 # on style.css/main.js references in the HTML when they change, and version
 # font/image filenames (e.g. -v22) if they're ever replaced.
