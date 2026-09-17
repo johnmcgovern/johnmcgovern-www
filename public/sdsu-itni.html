@@ -212,7 +212,17 @@
       .contact a, .panel a { color: inherit; border: 0; }
       .panel { display: block !important; animation: none; orphans: 3; widows: 3; }
       .panel p { line-height: 1.45; }
-      .letter-meta p { margin-bottom: 0.7em; }
+      /* keep the cover letter on a single printed page */
+      .eyebrow { margin-bottom: 0.6rem; }
+      .name { font-size: 1.8rem; }
+      .name::after { margin-top: 0.5rem; }
+      .role { margin-top: 0.7rem; }
+      .doc > header { padding-bottom: 0.45rem; }
+      .print-only { margin: 0.7rem 0 0.5rem; font-size: 1.15rem; }
+      #panel-cover-letter p { font-size: 9.6pt; line-height: 1.38; margin-bottom: 0.8em; }
+      .letter-meta p { margin-bottom: 0.4em; }
+      .letter-sig { margin-top: 0.6em; }
+      .letter-sig .sig-name { font-size: 1.1rem; margin-top: 0.15em; }
       .panel h2 { break-after: avoid; }
       .print-only { display: block; font-family: var(--font-head); font-size: 1.3rem; margin: 1.1rem 0 0.8rem; }
       .print-only .print-sub { color: var(--muted); }
@@ -262,16 +272,18 @@
 
         <p>Dear Hiring Committee,</p>
 
-        <p>From 2013 to 2017, I served as a Network Analyst at San Diego State University, promoted during that time to the Expert classification and appointed group lead for network architecture and strategy. The environment this posting describes is one I know firsthand. I helped design and operate the expansive campus network, on a stack built around Alcatel-Lucent, Cisco, HPE Aruba, and Palo Alto. My four years at SDSU were the most meaningful of my twenty-three-year career, and I am applying because I want to bring everything I have learned since back to the place where that learning was most significant.</p>
+        <p>From 2013 to 2017, I served as a Network Analyst at San Diego State University, was promoted to the Expert classification, and was appointed group lead for network architecture and strategy. I know the environment this posting describes firsthand. I helped design and operate the expansive campus network on a stack built around Alcatel-Lucent, Cisco, HPE Aruba, and Palo Alto. My four years at SDSU were the most meaningful of my twenty-three-year career, and I am applying because I want to bring everything I have learned since back to the place where that learning mattered most.</p>
 
         <p>I left SDSU in 2017 for ServiceNow, where I helped operate a production network spanning more than twenty data centers and tens of thousands of devices, working in BGP and OSPF at global scale. Since 2018, I have been a cybersecurity architect at Splunk and now SentinelOne, designing and validating security, telemetry, and observability architectures for Fortune 100 environments. Along the way, I completed a master's degree in Cybersecurity Operations &amp; Leadership at the University of San Diego, kept my CCNP Enterprise certification current, and wrote Python and Ansible automation that Splunk adopted as an open-source standard. This posting asks for observability, automation, cloud connectivity, and security depth alongside core routing and switching. That combination has been the focus of the last nine years of my career, and I would come back a far stronger engineer than I left.</p>
 
-        <p>What I remember most fondly about SDSU, though, is not the hardware. It is the student technicians I mentored, several of whom have built strong careers of their own, and the documentation portal and training video series my team created, which was adopted across the CSU system. OneIT's values of service, collaboration, and innovation describe how I have tried to work everywhere I have been, but a university is where those values connect directly to teaching, research, and student success. That is the mission I want the next (and hopefully final) chapter of my career to serve.</p>
+        <p>What I remember most fondly about SDSU, though, is not the hardware. It is the student technicians I mentored, several of whom have built strong careers of their own, and the documentation portal and training video series my team created, which was adopted across the CSU system. OneIT's commitments to service, collaboration, and innovation describe how I endeavor to engage each role I have undertaken. Still, a university is where those values connect directly to teaching, research, and student success. That is the mission I want the next (and hopefully final) chapter of my career to serve.</p>
 
-        <p>Returning to SDSU would not be a stepping stone for me. It would be a homecoming with compound interest. I would welcome the chance to discuss the university's network modernization roadmap and how I could contribute from day one. Thank you for your consideration.</p>
+        <p>Returning to SDSU would not be a stepping stone for me. It would be a homecoming, marked by a renewed sense of context, purpose, and drive. These are exciting times for SDSU students, faculty, and staff, and for technologists. How we execute on University priorities now, including the adoption of language models and agentic AI, will shape the future of education and profoundly impact students. Having the right technologists strategically positioned makes much of the difference. I have been rooting for SDSU from the sidelines for many years and would deeply treasure the opportunity to return to the field as a player-coach.</p>
+
+        <p>Thank you for your time and consideration.</p>
 
         <div class="letter-sig">
-          <p>Sincerely,</p>
+          <p>Positively,</p>
           <p class="sig-name">John C. McGovern</p>
         </div>
       </section>
