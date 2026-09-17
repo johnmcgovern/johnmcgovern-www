@@ -14,7 +14,7 @@ public/
   404.html            # custom not-found page
   sdsu-itni.html      # UNLISTED: standalone SDSU-styled application page
                       #   (noindex meta + X-Robots-Tag; not in sitemap, robots.txt,
-                      #   or linked from anywhere). Own fonts: Montserrat, favicon-sdsu.svg
+                      #   or linked from anywhere). Own fonts: Montserrat, favicon-sdsu-v2.svg
   assets/css/style.css
   assets/js/main.js   # starfield background
   assets/favicon.svg
